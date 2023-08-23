@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href="../css/login.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="icon" href="github.png">
+    <style>
+        body {
+            font-family: 'Poppins';
+            margin: 0;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="displayContainer">
+
+        <div class="container">
+            <div class="login-signup-Btn">
+                <input type="radio" class="radio loginRadio" name="signup" id="login" checked>
+                <input type="radio" class="radio signupRadio" onclick="signup()" name="signup" id="signup"  >
+                <div class="sliderTab"></div>
+                <label class="customLabel label1" onclick="login()" for="login">login</label>
+                <label class="customLabel label2" for="signup">Signup</label>
+            </div>
+            <div class="formContainer">
+                <form action="/login" method="POST" autocomplete="on" id="loginForm">
+                    <div class="inputBox">
+                        <div class="formTitle">
+                            <h2>Login</h2>
+                        </div>
+                        <label for="email">Email&nbsp;:&nbsp;</label>
+                        <input class="inputBtn" type="email" name="email" id="email" placeholder="your mail goes here" autofocus required>
+                        <label for="password">Password&nbsp;:&nbsp;</label>
+                        <input class="inputBtn" type="password" name="password" id="pasword" placeholder="password🙈" required>
+                        <div class="submitContainer">
+                            <input class="inputBtn signupBtn subBtn" type="submit" value="submit">
+                            <input class="inputBtn submitBtn clrBtn" type="button" name="" id="clear" value="Clear"
+                                onclick="clearLogin()">
+                        </div>
+                        <div class="notSignup">
+                            <p style="cursor:default;">Not a User?<span style="color: azure; cursor: pointer;"
+                                    onclick="signup()">&nbsp;Signup</span></p>
+                        </div>
+                    </div>
+                </form>
+                <form action="/login" method="POST" autocomplete="on" id="signupForm">
+                    <div class="inputBox">
+                        <div class="formTitle">
+                            <h2>SignUp</h2>
+                        </div>
+                        <label for="username">UserName&nbsp;:&nbsp;</label>
+                        <input class="inputBtn" type="text" name="username" id="username"
+                            placeholder="you are called as">
+                        <label for="email">Email&nbsp;:&nbsp;</label>
+                        <input class="inputBtn" type="email" name="email" id="email" placeholder="your mail goes here">
+                        <label for="password">Password&nbsp;:&nbsp;</label>
+                        <input class="inputBtn" type="password" name="password" id="pasword" placeholder="password🙈">
+                        <div class="submitContainer">
+                            <input class="inputBtn submitBtn subBtn" type="submit" value="SignUp">
+                            <input class="inputBtn submitBtn clrBtn" type="button" name="" id="clear" value="Clear"
+                                onclick="clearSignup()">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/login.js"></script>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <style>
+        body {
+            font-family: 'Poppins';font-size: 22px;
+        }
+        </style>
+</head>
+<body style="background-color: aquamarine;">
+    <label for="option1">option1</label>
+    <input type="radio" name="radio" id="option1">
+    <label for="option2">option2</label>
+    <input type="radio" name="radio" id="option2">
+    <span>this is an example for frames</span><br>
+    <label for> select your browser</label>
+    <input type="text" list="dev">
+    <datalist id="dev" >
+        <option value="internet explorer"></option>
+        <option value="chrome"></option>
+        <option value="safari"></option>
+        <option value="opera"></option>
+        <option value="brave"></option>
+    </datalist>
+    <input type="submit">
+
+    
+    <canvas height="300px" width="300px" id="canvas" style="border: 1px solid black;"></canvas>
+    
+    <svg width="300" height="200">
+        <polygon points="100,10 40,198 190,78 10,78 160,198"
+        style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
+      </svg>
+    
+    
+
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = '30px Arial';
+    ctx.fillText("abhichandra",50,50)
+    ctx.stroke()
+</script>
+</html>
