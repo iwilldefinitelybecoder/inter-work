@@ -1,6 +1,7 @@
 .displayContainer {
     display: flex;
     flex-direction: row;
+    position: relative;
     justify-content: center;
     background-image: linear-gradient(to right, #76e0f8, #8cb3e9);
     align-items: center;
@@ -100,7 +101,7 @@ input[type=submit] {
     margin-left: 9px;
     height: 110%;
     width: 45%;
-    background-color: #d5a63a;
+    background-color: #eeb83b;
     transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 2;
     border-radius: 5px 0px 0px 5px;
@@ -120,11 +121,9 @@ input[type=radio] {
 
 #login:checked~label.label1 {
     color: white;
+    text-shadow: 0px 12px 25px rgba(255, 255, 255, 0.998);
     cursor: default;
     user-select: none;
-    /* background-color: #d5a63a; 
-    height: 15px;
-    width: 35px; */
     transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 1s ease-in-out;
 }
 
@@ -168,7 +167,7 @@ input[type=radio] {
 
 
 .subBtn {
-    background-color: #d8ab42;
+    background-color: #f2be46;
     color: #fff;
     border-color: #fff;
 }
@@ -200,3 +199,264 @@ input[type=radio] {
     align-items: center;
     margin-top: 20px;
 }
+
+.messageArray{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 2;
+    background-color: #00ff0000;
+}
+
+.arrayContainer{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 107%;
+    margin-top: 80px;
+}
+
+.popupMessages{
+    position:absolute;
+    top: 20px;
+    z-index:20;
+    border-left: 5px solid white;
+    left: 0px;
+    min-width: 250px;
+    min-height: 60px;
+    background-color:rgb(36, 36, 36) ;
+    color: white;
+    border-radius: 2px 5px 5px 2px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    animation: popup 5.5s ease-out 0.2s both;
+}
+
+@keyframes popup {
+    0%{
+        left:-250px;
+    }5%{
+        left:30px;
+
+    }9%{
+        left:20px;
+    }
+    90%{
+        left:20px;
+    }
+    92%{
+        left:20px;
+    }
+    96%{
+        left:30px;
+        opacity: 1;
+    }
+    100%{
+        left:40px;
+        opacity: 0;
+    }
+}
+
+
+
+
+.successMessage{
+    display: flex;
+    height: auto;
+    position: relative;
+    border-left: 5px solid #00ff00;
+    box-shadow: inset -8px 0 10px rgba(255, 255, 255, 0.5);
+    width: 100%;
+    bottom: 0px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.popupContainer{
+    display: none;
+}
+
+.failureMessaage{
+    display: flex;
+    height: 100%;
+    position: relative;
+    border-left: 5px solid #ff0000;
+    box-shadow: inset -8px 0 10px rgba(255, 255, 255, 0.5);
+    width: 100%;
+    bottom: 0px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.timeoutBarSuccess{
+position:absolute;
+bottom:-4px;
+background-color: #00ff00af;
+height: 4px;
+width: 100%;
+left:-20px;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px; 
+
+/* animation: timeout 5s ease-out both; */
+}
+
+.timeoutBarFailure{
+    position:absolute;
+    bottom:-4px;
+    background-color: #ff0000af;
+    height: 4px;
+    width: 100%;
+    left:-20px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px; 
+    
+    animation: timeout 5.3s ease-out 0.2s both;
+    }
+
+@keyframes timeout {
+    0%{
+        left:-20px;
+    }100%{
+        left:-280px
+    }
+}
+
+.close{
+    height: 18px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 3px;
+    right: 18px;
+    padding: 1px;
+    cursor: pointer;
+    color: white;
+    z-index: 3;
+    border-radius: 8px;
+    font-size: 15px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.close:hover{
+    background-color: rgba(224, 219, 219, 0.253);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+.checkmark__circle {
+    stroke-dasharray:16;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #23da23af;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) .5s forwards ;
+  }
+
+  
+.checkmark__circle__x{
+    stroke-dasharray:16;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #ff0000;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) .5s forwards ;
+}
+
+  .checkmark {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 5;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin:  10px;
+    box-shadow: inset 0px 0px 0px #00ff00af;
+    animation: fill 0.4s ease-in-out .9s forwards, scale .3s ease-in-out 1.4s both;
+  }
+  
+  .checkmark__x{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 5;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin:  10px;
+    box-shadow: inset 0px 0px 0px #ff0000af;
+    animation: fillcross 0.4s ease-in-out .9s forwards, scale .3s ease-in-out 1.4s both;
+  }
+
+  .checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+  }
+
+  .checkmark__cross1{
+
+    transform-origin: 50% 50%;
+    stroke-dasharray: 35;
+    stroke-dashoffset: 35;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+  }
+  
+  .checkmark__cross2{
+
+    transform-origin: 50% 50%;
+    stroke-dasharray: 35;
+    stroke-dashoffset: 35;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+  }
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes scale {
+    0%, 100% {
+      transform: none;
+    }
+    50% {
+      transform: scale3d(1.6, 1.6, 1);
+    }
+  }
+  
+  @keyframes fill {
+    100% {
+      box-shadow: inset 0px 0px 0px 30px #00ff00af;
+    }
+  }
+
+  @keyframes fillcross {
+    100% {
+      box-shadow: inset 0px 0px 0px 30px #ff0000;
+    }
+  }

@@ -19,8 +19,31 @@
 </head>
 
 <body>
-    <div class="displayContainer">
-
+    <div class="displayContainer" >
+        <div class="messageArray" id="messageArray">
+        </div>
+        <!-- <div class="popupContainer popupMessages`" id="popupSuccessMessages">
+            <div class="successMessage" id="successMessage">
+                <div class="close" onclick="closeContainer()">x</div>
+                <div class="popupMessage" id="loginMessage">
+                    <p id="loginMessageText">logging in user</p>
+                </div>
+                <div class="timeoutBarSuccess"></div>
+            </div>
+        </div>-->
+        <!-- <div class="popupContainer" id="popupFailureMessages">
+            <div  id="failureMessaage">
+                <div class="popupMessage" id="loginMessage">
+                    <p id="loginMessageText">login failure</p>
+                </div>
+                <div class="popupMessage" id="signupMessage">
+                    <p id="signupMessageText"></p>
+                </div>
+                <div class="timeoutBarFailure"></div>
+            </div>
+        </div>  -->
+        
+        
         <div class="container">
             <div class="login-signup-Btn">
                 <input type="radio" class="radio loginRadio" name="signup" id="login" checked>
@@ -30,18 +53,18 @@
                 <label class="customLabel label2" for="signup">Signup</label>
             </div>
             <div class="formContainer">
-                <form action="/login" method="POST" autocomplete="on" id="loginForm">
+                <form autocomplete="on" id="loginForm">
                     <div class="inputBox">
                         <div class="formTitle">
                             <h2>Login</h2>
                         </div>
                         <label for="email">Email&nbsp;:&nbsp;</label>
-                        <input class="inputBtn" type="email" name="email" id="email" placeholder="your mail goes here" autofocus required>
+                        <input class="inputBtn" type="email" name="email" id="loginEmail" placeholder="your mail goes here" autofocus >
                         <label for="password">Password&nbsp;:&nbsp;</label>
-                        <input class="inputBtn" type="password" name="password" id="pasword" placeholder="password🙈" required>
+                        <input class="inputBtn" type="password" name="password" id="loginpassword" placeholder="password🙈" >
                         <div class="submitContainer">
-                            <input class="inputBtn signupBtn subBtn" type="submit" value="submit">
-                            <input class="inputBtn submitBtn clrBtn" type="button" name="" id="clear" value="Clear"
+                            <input class="inputBtn signupBtn subBtn" type="submit" value="submit" onclick="loginSubmit()">
+                            <input class="inputBtn submitBtn clrBtn" type="button" name="" id="loginClear" value="Clear"
                                 onclick="clearLogin()">
                         </div>
                         <div class="notSignup">
@@ -50,21 +73,21 @@
                         </div>
                     </div>
                 </form>
-                <form action="/login" method="POST" autocomplete="on" id="signupForm">
+                <form  autocomplete="on" id="signupForm">
                     <div class="inputBox">
                         <div class="formTitle">
                             <h2>SignUp</h2>
                         </div>
                         <label for="username">UserName&nbsp;:&nbsp;</label>
-                        <input class="inputBtn" type="text" name="username" id="username"
+                        <input class="inputBtn" type="text" name="username" id="signupUsername"
                             placeholder="you are called as">
                         <label for="email">Email&nbsp;:&nbsp;</label>
-                        <input class="inputBtn" type="email" name="email" id="email" placeholder="your mail goes here">
+                        <input class="inputBtn" type="email" name="email" id="signipEmail" placeholder="your mail goes here">
                         <label for="password">Password&nbsp;:&nbsp;</label>
-                        <input class="inputBtn" type="password" name="password" id="pasword" placeholder="password🙈">
+                        <input class="inputBtn" type="password" name="password" id="SignupPasword" placeholder="password🙈">
                         <div class="submitContainer">
-                            <input class="inputBtn submitBtn subBtn" type="submit" value="SignUp">
-                            <input class="inputBtn submitBtn clrBtn" type="button" name="" id="clear" value="Clear"
+                            <input class="inputBtn submitBtn subBtn" type="submit" value="SignUp" onclick="signupSubmit()">
+                            <input class="inputBtn submitBtn clrBtn" type="button" name="" id="signupClear" value="Clear"
                                 onclick="clearSignup()">
                         </div>
                     </div>
