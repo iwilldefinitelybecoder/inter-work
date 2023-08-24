@@ -20,30 +20,7 @@
 
 <body>
     <div class="displayContainer" >
-        <div class="messageArray" id="messageArray">
-        </div>
-        <!-- <div class="popupContainer popupMessages`" id="popupSuccessMessages">
-            <div class="successMessage" id="successMessage">
-                <div class="close" onclick="closeContainer()">x</div>
-                <div class="popupMessage" id="loginMessage">
-                    <p id="loginMessageText">logging in user</p>
-                </div>
-                <div class="timeoutBarSuccess"></div>
-            </div>
-        </div>-->
-        <!-- <div class="popupContainer" id="popupFailureMessages">
-            <div  id="failureMessaage">
-                <div class="popupMessage" id="loginMessage">
-                    <p id="loginMessageText">login failure</p>
-                </div>
-                <div class="popupMessage" id="signupMessage">
-                    <p id="signupMessageText"></p>
-                </div>
-                <div class="timeoutBarFailure"></div>
-            </div>
-        </div>  -->
-        
-        
+        <div class="messageArray" id="messageArray"></div> 
         <div class="container">
             <div class="login-signup-Btn">
                 <input type="radio" class="radio loginRadio" name="signup" id="login" checked>
@@ -63,7 +40,7 @@
                         <label for="password">Password&nbsp;:&nbsp;</label>
                         <input class="inputBtn" type="password" name="password" id="loginpassword" placeholder="password🙈" >
                         <div class="submitContainer">
-                            <input class="inputBtn signupBtn subBtn" type="submit" value="submit" onclick="loginSubmit()">
+                            <input class="inputBtn signupBtn subBtn" type="submit" value="submit" id="loginSubmitBtn" onclick="loginSubmit()">
                             <input class="inputBtn submitBtn clrBtn" type="button" name="" id="loginClear" value="Clear"
                                 onclick="clearLogin()">
                         </div>
@@ -86,7 +63,7 @@
                         <label for="password">Password&nbsp;:&nbsp;</label>
                         <input class="inputBtn" type="password" name="password" id="SignupPasword" placeholder="password🙈">
                         <div class="submitContainer">
-                            <input class="inputBtn submitBtn subBtn" type="submit" value="SignUp" onclick="signupSubmit()">
+                            <input class="inputBtn submitBtn subBtn" type="submit" value="SignUp" id="signupSubmitBtn" onclick="signupSubmit()">
                             <input class="inputBtn submitBtn clrBtn" type="button" name="" id="signupClear" value="Clear"
                                 onclick="clearSignup()">
                         </div>

@@ -1,6 +1,8 @@
 let intervalId
 let fixIncrement = 70
 
+const globalVariables = [{}]
+
 
 function login() {
     const formContainer = document.getElementsByClassName("formContainer");
@@ -57,11 +59,15 @@ function clearLogin() {
     const type = "login"
     const loginForm = document.getElementById("loginForm");
     if(formCheck(loginForm, type)){
-        createSuccessPopup("Form is cleared!")
-        loginForm.reset();
+        // createSuccessPopup("Form is cleared!")
         
     }else{
-        createFailurePopup("Form is empty!")
+        const type = "login"
+        const waitingText = "logging in..."
+        const completeText = "Welcome"+"!"
+        waiting(type,waitingText,completeText)
+        loginForm.reset();
+        // createFailurePopup("Form is empty!")
     }
 }
 
@@ -88,7 +94,7 @@ function formValidation(e,type){
     if(type == "login"){
         const email = form.email
         const password = form.password
-        console.log(email.length!==0, password)
+
         
         if(email.length === 0 && password.length === 0){
             return "Form is empty!";
@@ -104,7 +110,7 @@ function formValidation(e,type){
     const username = form.username
     const email = form.email
     const password = form.password
-    if(username.length !== 0 && email.length !== 0 && password.length !== 0){
+    if(username.length === 0 && email.length === 0 && password.length === 0){
         return "Form is empty!";
     }
     if(username.length === 0 ){
@@ -124,28 +130,28 @@ function formValidation(e,type){
 
 const loginAnnoumus = (e)=> {
     e.preventDefault();
-    
+    const loginForm = document.getElementById("loginForm");
     const type = "login"
     const message = formValidation(e,type);
-    if(message.length !== 0){
+    if(message !==false && message.length !== 0 ){
         createFailurePopup(message)
         return
     };
-    clearInterval(intervalId);
     setData(e);
-    createSuccessPopup("You are logged in!")
-    loginForm.removeEventListener("submit", (e) => {
-        return
-    }) 
+    // createSuccessPopup("You are logged in!")
+    loginForm.removeEventListener("submit", LoginSubmit) 
     return 
     
 }
 
+function LoginSubmit(e){
+    loginAnnoumus(e);
+
+}
+
 function loginSubmit() {
     const loginForm = document.getElementById("loginForm");
-    loginForm.addEventListener("submit", (e) => {
-        loginAnnoumus(e);
-    });
+    loginForm.addEventListener("submit", LoginSubmit);
 }
 
 const signupAnnoumus = (e) => {
@@ -153,24 +159,26 @@ const signupAnnoumus = (e) => {
 
     const type = "signup"
 
-    if(!formValidation(e,type)){
+    const message = formValidation(e,type);
+    console.log(message)
+    if(message !==false && message.length !== 0 ){
+        createFailurePopup(message)
         return
-    };
-    clearInterval(intervalId);
-    createFailurePopup()
+    }
+
     setData(e);
-    popUpFailure();
-    signupForm.removeEventListener("submit", (e) => {
-        return
-    })
+    signupForm.removeEventListener("submit", SignupSubmit)
+
     return
+}
+
+function SignupSubmit(e){
+    signupAnnoumus(e);
 }
 
 function signupSubmit() {
     const signupForm = document.getElementById("signupForm");
-    signupForm.addEventListener("submit", (e) => {
-        signupAnnoumus(e);
-    });
+    signupForm.addEventListener("submit",SignupSubmit);
 }
 
 
@@ -193,6 +201,13 @@ function setData(e) {
         localStorage.setItem("loginData", JSON.stringify(loginData));
         e.target.reset();
         console.log(localStorage.getItem("loginData"))
+        const user = JSON.parse(localStorage.getItem("loginData"));
+        const email = user.email;
+        let name = email.slice(0, email.indexOf("@"))
+        const type = "login"
+        const waitingText = "logging in..."
+        const completeText = "Welcome"+" "+name+"!"
+        waiting(type,waitingText,completeText)
         
     }
     
@@ -210,6 +225,10 @@ function setData(e) {
         }
         localStorage.setItem("signupData", JSON.stringify(signupData));
         e.target.reset();
+        const user = JSON.parse(localStorage.getItem("signupData"));
+        const username = user.username;
+        let name = username.slice(0,10)
+        createSuccessPopup("Welcome"+" "+name+"!")
     }
     window.removeEventListener("unload", unload);
     
@@ -217,40 +236,39 @@ function setData(e) {
 }
 
 
-function popUpSuccess(){
-    const popupMessage = document.getElementById("popupSuccessMessages");
-    const successMessage = document.getElementById("successMessage");
-    console.log(popupMessage);
-    popupMessage.classList.remove("popupContainer");
-    popupMessage.classList.add("popupMessages");
-    successMessage.classList.add("successMessage");
+// function popUpSuccess(){
+//     const popupMessage = document.getElementById("popupSuccessMessages");
+//     const successMessage = document.getElementById("successMessage");
+//     console.log(popupMessage);
+//     popupMessage.classList.remove("popupContainer");
+//     popupMessage.classList.add("popupMessages");
+//     successMessage.classList.add("successMessage");
 
-    intervalId = setTimeout(() => {
-        popupMessage.classList.remove("popupMessage");
-        successMessage.classList.remove("successMessage");
-        popupMessage.classList.add("popupContainer");
-    }, 6000);
+//     intervalId = setTimeout(() => {
+//         popupMessage.classList.remove("popupMessage");
+//         successMessage.classList.remove("successMessage");
+//         popupMessage.classList.add("popupContainer");
+//     }, 6000);
 
-}
+// }
 
-function popUpFailure(){
-    const popupMessage = document.getElementById("popupMessages");
-    const successMessage = document.getElementById("failureMessaage");
-    console.log(popupMessage, successMessage)
-    popupMessage.classList.remove("popupContainer");
-    popupMessage.classList.add("popupMessages");
-    successMessage.classList.add("failureMessaage");
-    intervalId = setTimeout(() => {
-        popupMessage.classList.remove("popupMessaages");
-        successMessage.classList.remove("successMessage");
-        popupMessage.classList.add("popupContainer");
-    }, 6000);
-}
+// function popUpFailure(){
+//     const popupMessage = document.getElementById("popupMessages");
+//     const successMessage = document.getElementById("failureMessaage");
+//     console.log(popupMessage, successMessage)
+//     popupMessage.classList.remove("popupContainer");
+//     popupMessage.classList.add("popupMessages");
+//     successMessage.classList.add("failureMessaage");
+//     intervalId = setTimeout(() => {
+//         popupMessage.classList.remove("popupMessaages");
+//         successMessage.classList.remove("successMessage");
+//         popupMessage.classList.add("popupContainer");
+//     }, 6000);
+// }
 
 
 
 function closeContainer(e){
-    e.preventDefault();
     const popupMessage1 = document.getElementById("popupMessages");
     popupMessage1.classList.remove("popupMessages");
     popupMessage1.classList.add("popupContainer");
@@ -269,6 +287,7 @@ function positionUpdate(){
 
 let count = 0
 let successDivTimeout
+
 function createSuccessPopup(text){
     const popupMessages = document.createElement("div");
     popupMessages.classList.add("popupMessages");
@@ -321,39 +340,39 @@ function createSuccessPopup(text){
     
 }
 
-function createFailurePopup(text){
-    console.log(count)
+
+
+function createFailurePopup(text,isWaiting){
+    let waiter = {name:true}
+    if(isWaiting !== undefined){
+        waiter = globalVariables.some(obj=>obj[isWaiting] === undefined)
+        console.log(waiter, isWaiting)
+    if(waiter) return
+}
+    const classIdObj = {}
     const popupMessages = document.createElement("div");
     popupMessages.classList.add("popupMessages");
     popupMessages.id = "popupFailureMessages";
 
-    const failureMessage = document.createElement("div");
-    failureMessage.classList.add("failureMessaage");
-    failureMessage.id = "failureMessage";
-
-    const closeBtn = document.createElement("div");
-    closeBtn.classList.add("close");
-    closeBtn.innerText = "x";
-    closeBtn.addEventListener("click", ()=>closeContainer());
-
-    const p = document.createElement("p");
-    p.innerText = text;
-    p.id="loginMessageText"
-
-    const popupMessage = document.createElement("div");
-    popupMessage.classList.add("popupMessage");
-    popupMessage.id = "popupMessage";
-    failureMessage.appendChild(closeBtn);
-  
-    failureMessage.appendChild(popupMessage);
-    popupMessage.appendChild(p);    
-
-    const failureMarkSVG = createXSVG();
-    failureMessage.appendChild(failureMarkSVG);
+    if(waiter.name == true){
+    classIdObj.classParentMessage = "failureMessaage";
+    classIdObj.idParentMessage = "failureMessage";
+    }else{
+        classIdObj.classParentMessage = "middlewareMessaage";
+    classIdObj.idParentMessage = "failureMessage";
+    
+}
+    classIdObj["pid"] = "loginMessageText"
+    classIdObj["p.innerText"] = text;
+    
+    classIdObj.classPopMessage = "popupMessage";
+    classIdObj.idPopMessage = "popupMessage";
+    
+    const failureMessage = middlewarePopupMessage(classIdObj);
+    
     popupMessages.appendChild(failureMessage);
-
     popupMessages.classList.add(`position${count}`)
-
+    
     const messageArray = document.getElementById("messageArray");
 
     const arrayContainer = document.createElement("div");
@@ -362,7 +381,6 @@ function createFailurePopup(text){
 
     arrayContainer.appendChild(popupMessages);
 
-    
 
     if(count<6){
         messageArray.appendChild(arrayContainer);
@@ -374,6 +392,46 @@ function createFailurePopup(text){
     }
     
 }
+function middlewareSVG(){
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "checkmark__middleware");
+    svg.setAttribute("viewBox", "0 0 52 52");
+    return svg;
+}
+
+function middlewarePopupMessage(elementObj){
+    const parentMessage = document.createElement("div");
+
+    parentMessage.classList.add(elementObj.classParentMessage);
+    parentMessage.id = elementObj.idParentMessage
+
+    const p = document.createElement("p");
+    p.innerText = elementObj["p.innerText"];
+    p.id=elementObj["pid"];
+    p.style.transition = "all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+
+    const closeBtn = document.createElement("div");
+    closeBtn.classList.add("close");
+    closeBtn.innerText = "x";
+    closeBtn.addEventListener("click", ()=>closeContainer());
+
+    const popupMessage = document.createElement("div");
+    popupMessage.classList.add(elementObj.classPopMessage);
+    popupMessage.id = elementObj.idPopMessage;
+
+    // const failureMarkSVG = createXSVG();
+    const middlewareSVGs = middlewareSVG();
+
+    parentMessage.appendChild(closeBtn);
+    popupMessage.appendChild(p);    
+    parentMessage.appendChild(popupMessage);
+    
+    parentMessage.appendChild(middlewareSVGs);
+
+    return parentMessage;
+
+}
+
 
 
 function createCheckmarkSVG() {
@@ -433,7 +491,48 @@ function createCheckmarkSVG() {
     svg.appendChild(line1);
     return svg; 
   }
+  function waiting(reqestor, WaitingText, completeText) {
+    const requestManager = {}
+    const name = reqestor;
+    console.log(name, globalVariables);
   
+    for (const [key, value] of globalVariables.entries()) {
+      if (value === name && globalVariables.length < 6) {
+        return;
+      }
+      globalVariables[key][name] = false;
+    }
+  
+    createFailurePopup(WaitingText, name);
+  
+    setTimeout(() => {
+        for (const [key, value] of (globalVariables).entries()) {
+            let value1
+              Object.keys(value).forEach(key => {
+                value1 = key
+              });
+              console.log(value1)
+              if (value1 === name) {
+                globalVariables[key][name] = true;
+                classs(completeText, name);
+                delete globalVariables[key][name]
+                console.log(globalVariables)
+                return;
+              }
+            }
+    }, 3000);
+  }
+
+  function classs(completedText, name) {
+    const message  = document.getElementById("failureMessage");
+    message.classList.remove("middlewareMessaage");
+    message.classList.add("failureMessaage");
+    const p = document.createElement("p");
+    const messages = document.getElementById("loginMessageText");
+    messages.innerText = completedText;
+  }
+  
+
 
 window.addEventListener("online", () => createSuccessPopup("You are online"))
 window.addEventListener("offline", () => createFailurePopup("You are offline"))

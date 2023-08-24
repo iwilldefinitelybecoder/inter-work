@@ -305,6 +305,25 @@ input[type=radio] {
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 1px;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.middlewareMessaage{
+    border-left: 5px solid #eeb83b;
+    box-shadow: inset -8px 0 10px #eeb83b8c;
+    display: flex;
+    height: 100%;
+    position: relative;
+    box-shadow: inset -8px 0 10px rgba(255, 255, 255, 0.5);
+    width: 100%;
+    bottom: 0px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .timeoutBarSuccess{
@@ -376,6 +395,15 @@ border-bottom-right-radius: 5px;
     animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) .5s forwards ;
   }
 
+  .checkmark__middleware {
+    stroke-dasharray:16;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #eeb83b;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) .5s forwards ;
+  }
   
 .checkmark__circle__x{
     stroke-dasharray:16;
